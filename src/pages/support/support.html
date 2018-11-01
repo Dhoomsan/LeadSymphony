@@ -1,0 +1,50 @@
+<!--
+  Generated template for the SupportPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar >
+      <ion-buttons left>
+          <button ion-button icon-only (click)="viewCtrl()" class="btn-color">Done</button>
+      </ion-buttons>
+      <ion-title text-center>support</ion-title>
+      <ion-buttons right >
+          <button ion-button icon-only (click)="viewBack()">
+              <ion-icon name="arrow-forward" ></ion-icon>
+          </button>
+      </ion-buttons> 
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+              <ion-card>
+                  <img src="assets/imgs/logo.png" />
+              </ion-card>
+          </ion-col>
+          <ion-col col-8>
+            <div class="border" style="position: absolute;top: 20%;"> 
+              <ion-label>Welcome, User Smith</ion-label>
+              <ion-label>Lead Symphony v1.0</ion-label>
+            </div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div class="title">Contact Us</div>
+    <div class="margin-top tag">Let us know whats on your mind and how we can help! </div> 
+    <ion-textarea placeholder="Comments..." class="margin-top"></ion-textarea>
+    <ion-card class="padding" >
+      <button class="sign-in rounded margin-top" type="submit" ion-button full favourite (click)="sendForm()">SEND</button>
+    </ion-card>
+    <div class="label1" (click)="social()">Social</div>
+
+
+    
+</ion-content>

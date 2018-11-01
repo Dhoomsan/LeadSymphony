@@ -1,0 +1,7 @@
+{
+  "name": "LeadSymphony",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

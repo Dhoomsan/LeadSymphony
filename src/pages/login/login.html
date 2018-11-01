@@ -1,0 +1,62 @@
+<ion-content padding text-center> 
+  <div class="padding">
+    <ion-card >
+        <img src="assets/imgs/logo.png" />
+    </ion-card>
+    <div class="title">Lead Symphony</div>
+    <form  [formGroup]="formgroup">
+      <input class="rounded margin-top" type="text" formControlName="UserName" placeholder="Username" />
+      <ion-item *ngIf="UserName.hasError('required') && UserName.touched">
+        <p class="Error"> *User Name is required</p>
+      </ion-item>
+
+      <input class="rounded margin-top" type="password"  formControlName="Password" placeholder="Password" />
+      <ion-item *ngIf="Password.hasError('required') && Password.touched">
+        <p class="Error"> *Password is required</p>
+      </ion-item>
+
+      <div class="label" (click)="reset_password()">Forgot your password?</div>
+      <button class="sign-in rounded margin-top" (click)="logForm()" type="submit" ion-button full favourite>LOGIN</button>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-5><div class="border"></div></ion-col>
+          <ion-col col-2>Or</ion-col>
+          <ion-col col-5><div class="border"></div></ion-col>
+        </ion-row>
+      </ion-grid>
+      <button class="sign-up rounded"  type="submit" ion-button full favourite >SIGN UP</button>
+    </form>
+  </div>
+  
+</ion-content>
+<!-- 
+<ion-content padding text-center> 
+    <div class="padding">
+      <ion-card >
+          <img src="assets/imgs/logo.png" />
+      </ion-card>
+      <div class="title">Lead Symphony</div>
+      <form (ngSubmit)="logForm()">
+        <input class="rounded margin-top" type="text" value="" [(ngModel)]="todo.Username" name="Username" placeholder="Username" />
+        <p class="Error">
+          {{ErrorUser}}
+        </p>
+        <input class="rounded margin-top" type="password" value=""  [(ngModel)]="todo.Password" name="Password" placeholder="Password" />
+        <p class="Error">
+          {{ErrorPassword}}
+        </p>
+        <div class="label" (click)="reset_password()">Forgot your password?</div>
+        <button class="sign-in rounded margin-top" type="submit" ion-button full favourite>LOGIN</button>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-5><div class="border"></div></ion-col>
+            <ion-col col-2>Or</ion-col>
+            <ion-col col-5><div class="border"></div></ion-col>
+          </ion-row>
+        </ion-grid>
+        <button class="sign-up rounded" type="submit" ion-button full favourite >SIGN UP</button>
+      </form>
+    </div>
+    
+  </ion-content> -->
+  
