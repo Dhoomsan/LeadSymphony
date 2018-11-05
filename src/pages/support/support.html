@@ -37,14 +37,17 @@
           </ion-col>
         </ion-row>
     </ion-grid>
-    <div class="title">Contact Us</div>
+    <label class="title">Contact Us</label>
     <div class="margin-top tag">Let us know whats on your mind and how we can help! </div> 
-    <ion-textarea placeholder="Comments..." class="margin-top"></ion-textarea>
-    <ion-card class="padding" >
-      <button class="sign-in rounded margin-top" type="submit" ion-button full favourite (click)="sendForm()">SEND</button>
-    </ion-card>
-    <div class="label1" (click)="social()">Social</div>
+    <form [formGroup]="formGroup">
+        <ion-textarea placeholder="Comments..." class="margin-top" formControlName="TextArea"></ion-textarea>
+        <ion-item *ngIf="formGroup.controls['TextArea'].errors?.required && formGroup.controls['TextArea'].touched">
+            <p class="Error"> *Write your Message</p>
+        </ion-item>
 
-
-    
+        <ion-card class="padding" >
+            <button class="sign-in rounded margin-top" type="submit" ion-button full favourite (click)="sendForm()">SEND</button>
+        </ion-card>
+    </form>
+   
 </ion-content>

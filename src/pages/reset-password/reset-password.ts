@@ -1,79 +1,54 @@
 import { Component} from '@angular/core';
-import { IonicPage,NavController} from 'ionic-angular';
-import{LoginPage} from '../login/login';
-/**
- * Generated class for the ResetPasswordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
+import { IonicPage,NavController,ToastController} from 'ionic-angular';
+import{FormBuilder, AbstractControl, FormGroup, Validators} from '@angular/forms';
+import {LoginPage} from '../login/login';
+import { ServiceProvider } from '../providers/Service-provider';
+import {SupportPage} from '../support/support';
 @IonicPage()
 @Component({
   selector: 'page-reset-password',
   templateUrl: 'reset-password.html',
 })
-export class ResetPasswordPage {
+export class ResetPasswordPage {  
   // https://www.joshmorony.com/adding-captcha-to-ionic-with-nodejs-middleware/
-  ErrorEmail:string;
-  // private captchaPassed: boolean = false;
-  // private captchaResponse: string;
-  constructor(public navCtrl: NavController ) {
+  formGroup:FormGroup;
+  Email:AbstractControl;
+  constructor(public navCtrl: NavController, public formBuilder:FormBuilder , public toastCtrl:ToastController) {
+    this.formGroup=formBuilder.group({
+      Email:['',Validators.compose([Validators.required, Validators.email, ServiceProvider.isEmailValid])],
+    });
+    this.Email=this.formGroup.controls[''];
   }
 
-  // captchaResolved(response: string): void {
- 
-  //   this.zone.run(() => {
-  //       this.captchaPassed = true;
-  //       this.captchaResponse = response;
-  //   });
-
-  // }
-  // sendForm(): void {
-  //     if(this.captchaPassed){
-  //       // submit the form
-  //   } else {
-  //       // do not submit the form
-  //   }
-  //   let data = {
-  //       captchaResponse: this.captchaResponse
-  //   };     
-
-  //   this.http.post('http://localhost:8100/test', data).subscribe(res => {
-  //       console.log(res);
-  //   });
-
-  // }
-
-  // support=function(){
-  //   this.navCtrl.setRoot(SupportPage);
-  // }
-  todo={};
   logForm=function(){
-    if(this.todo.Email== null){
-      this.ErrorUser="Email cannot be empty!";
-    }
-    if(this.todo.Email!= null){
-      this.ErrorEmail="";
-    }
-
-    if(this.todo.Email!= null){
-      console.log("Output "+this.todo.Email);
+      if(this.formGroup.valid){
       let toast = this.toastCtrl.create({
-        message: 'Successfully',
+        message: 'Reset successfully',
         duration: 3000,
         position: 'top'
       });
       toast.onDidDismiss(() => {
         console.log('Dismissed toast');
       });
-    
       toast.present();
-      
       this.navCtrl.setRoot(LoginPage);
-    }    
+    }
+    else{
+      let toast = this.toastCtrl.create({
+        message: 'Email is not valid',
+        duration: 3000,
+        position: 'top'
+      });
+      toast.onDidDismiss(() => {
+        console.log('Dismissed toast');
+      });
+      toast.present();
+    }
   }
 
+  support=function(){
+    this.navCtrl.setRoot(SupportPage);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResetPasswordPage');
   }

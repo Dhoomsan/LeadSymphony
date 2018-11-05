@@ -2,7 +2,8 @@ import { Component , ViewChild, ElementRef} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from 'ionic-native';
- 
+import {LoginPage} from '../login/login';
+import {ServiceProvider} from '../providers/Service-provider';
 // /home/agile/Android/Sdk
 // /usr/lib/jvm/java-8-oracle
 
@@ -20,7 +21,7 @@ declare var google;
   templateUrl: 'social-links.html',
 })
 export class SocialLinksPage {
-   imageURL
+  imageURL
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   start = 'chicago, il';
@@ -28,6 +29,11 @@ export class SocialLinksPage {
   directionsService = new google.maps.DirectionsService;
   directionsDisplay = new google.maps.DirectionsRenderer;
   constructor(public navCtrl: NavController, public navParams: NavParams, public geolocation: Geolocation) {
+    
+    if (!ServiceProvider.isLogged()) {
+      this.navCtrl.setRoot(LoginPage);
+    } 
+
   }
   ionViewDidLoad(){
     this.loadMap();
